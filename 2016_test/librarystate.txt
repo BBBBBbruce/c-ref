@@ -1,0 +1,6 @@
+book: Darkness_at_Noon borrowed by 1232until 17/12/2018
+book: The_Sun_also_Rises current available
+book: Waiting_for_Godot current available
+dvd: Solaris current available
+dvd: Jules_and_Jim current available
+dvd: Barry_Lyndon current available
