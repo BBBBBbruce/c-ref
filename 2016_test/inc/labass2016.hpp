@@ -12,11 +12,13 @@
 class item {
 protected:
   std::string name;
-public:
   int status=1;
   int day=3;
+public:
   int bocode=0;
   item(std::string name_);
+  bool check_status();
+  virtual int change_date()=0;
   virtual void borrow()=0;
   virtual std::ostream& print(std::ostream& os);
   friend std::ostream& operator<<(std::ostream& os , item& item);
@@ -27,8 +29,7 @@ class books : public item{
     books(std::string name_);
     void borrow();
     std :: ostream & print ( std :: ostream & os ) ;
-  private:
-    int loan_length = 14;
+    int change_date();
 };
 
 
@@ -37,8 +38,7 @@ public:
   dvds(std::string name_);
   void borrow();
   std :: ostream & print ( std :: ostream & os ) ;
-private:
-  int loan_length = 7;
+  int change_date();
 };
 
 

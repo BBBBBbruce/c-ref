@@ -5,6 +5,7 @@
 #include<fstream>
 #include<string>
 #include<cstdlib>
+#include<stdexcept>
 #include "../inc/labass2016.hpp"
 
 using namespace std;
@@ -36,15 +37,20 @@ int main() {
   char bor;
   int index;
   int bocode;
+
   while(bor !='n'){
     printff(library);
     cout<<"to borrow an item please enter its index followed by the borrower's code"<<endl;
     cin>>index>>bocode;
     library[index]->bocode=bocode;
 
+
     try {
-      library[index]->borrow();
-      cout<<index<<" "<<library[index]->bocode<<endl;
+      library.at(index)->borrow();
+      cout<<index<<" "<<library.at(index)->bocode<<endl;
+    }
+    catch(const out_of_range& a){
+      cout << "invalid index" << endl;
     }
     catch (const string & msg){
       cout << msg << endl;
@@ -63,13 +69,6 @@ int main() {
   int i=0;
   for(it = library.begin();it!= library.end();++it ){
     outfile<<*library[i];
-    if(library[i]->status==1){
-      outfile<<" current available"<<endl;
-    }
-    else{
-      outfile<<" borrowed by "<<library[i]->bocode<<"until ";
-      outfile<<library[i]->day<<"/12/2018"<<endl;
-    }
     i++;
   }
   outfile.close();

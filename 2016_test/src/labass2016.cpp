@@ -1,6 +1,8 @@
 #include "../inc/labass2016.hpp"
 #include <vector>
 
+
+
 using namespace std;
 
 std::ostream& operator<<(std::ostream& os , item& item){
@@ -15,11 +17,25 @@ std::ostream& item::print(std::ostream& os){
 
 std::ostream& books::print (std::ostream& os ) {
   os<<"book: "<<name;
+  if(check_status()){
+    os<<" current available"<<endl;
+  }
+  else{
+    os<<" borrowed by "<<bocode<<" until ";
+    os<<day<<"/12/2018"<<endl;
+  }
   return os;
 }
 
 std::ostream& dvds::print ( std::ostream& os ) {
   os<<"dvd: "<<name;
+  if(check_status()){
+    os<<" current available"<<endl;
+  }
+  else{
+    os<<" borrowed by "<<bocode<<" until ";
+    os<<day<<"/12/2018"<<endl;
+  }
   return os;
 }
 
@@ -32,23 +48,38 @@ dvds::dvds(std::string name_) : item(name_){};
 
 
 void books::borrow(){
-  if(status==0){
+  if(!check_status()){
     throw string("not available at the moment");
   }
   status=0;
-  day=day+loan_length;
+  change_date();
 
 }
 
 void dvds::borrow(){
-  if(status==0){
+  if(!check_status()){
     throw string("not available at the moment");
   }
   status=0;
-  day=day+loan_length;
+  change_date();
 
 }
 
+bool item::check_status(){
+  if(status == 1 ){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+int books::change_date(){
+  return day=day+14;
+}
+
+int dvds::change_date(){
+  return day=day+7;
+}
 // itorator
 void printff(std::vector<item*> library){
   cout<<"items:"<<endl;
@@ -57,13 +88,6 @@ void printff(std::vector<item*> library){
   for(it = library.begin();it!= library.end();++it){
     cout<<i<<": " ;
     cout<<*library[i];
-    if(library[i]->status==1){
-      cout<<" current available"<<endl;
-    }
-    else{
-      cout<<" borrowed by "<<library[i]->bocode<<" until ";
-      cout<<library[i]->day<<"/12/2018"<<endl;
-    }
     i++;
   }
 
@@ -75,13 +99,6 @@ void printend( std::vector<item*> library){
   int i=0;
   for(it = library.begin();it!= library.end();++it ){
     cout<<*library[i];  //cout<<int a=0;
-    if(library[i]->status==1){
-      cout<<" current available"<<endl;
-    }
-    else{
-      cout<<" borrowed by "<<library[i]->bocode<<" until ";
-      cout<<library[i]->day<<"/12/2018"<<endl;
-    }
     i++;
   }
 }
