@@ -10,9 +10,11 @@
 
 using namespace std;
 
-bool compres( item* & a, item* & b){
-   return (a->amount) < (b->amount) ;
+bool compres( item* & a,  item* & b){
+   return *a < *b ;
 }
+
+
 
 int main() {
   list <item*> restrict;
@@ -84,7 +86,7 @@ for(it = unrestrict.begin();it!= unrestrict.end();++it ){
 
 cout<<endl;
 
-if((*restrict.begin())->amount < (*unrestrict.begin())->amount){
+if(*restrict.begin()< *unrestrict.begin()){
   cout<<**restrict.begin()<<"is the item with the lowest quantity"<<endl;
 }else{
   cout<<**unrestrict.begin()<<"is the item with the lowest quantity"<<endl;
@@ -97,10 +99,8 @@ if((*restrict.begin())->amount < (*unrestrict.begin())->amount){
     i++;
   }
 
-  i=0;
   for(it = unrestrict.begin();it!= unrestrict.end();++it ){
     delete *it;
-    i++;
   }
 
   exit(0);

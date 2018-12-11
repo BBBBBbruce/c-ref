@@ -30,3 +30,8 @@ urtct::urtct(std::string name_, int amount_){
   name= name_;
   amount=amount_;
 }
+
+
+bool operator <(const item & a , const item & b){
+  return a.amount < b.amount;
+}

@@ -13,10 +13,12 @@
 class item {
 protected:
   std::string name;
-public:
   int amount;
+public:
   virtual std::ostream& print(std::ostream& os)=0;
   friend std::ostream& operator<<(std::ostream& os , item& item);
+  friend bool operator <(const item & a,const item& b);
+
 };
 
 class rtct : public item{
@@ -34,6 +36,6 @@ public:
   std :: ostream & print ( std :: ostream & os ) ;
 };
 
-
+bool operator <(const item & a,const item& b);
 std :: ostream & operator << (std :: ostream & os , item& item);
 #endif
