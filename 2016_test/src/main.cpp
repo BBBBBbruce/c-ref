@@ -11,6 +11,9 @@
 using namespace std;
 
 int main() {
+
+
+
   vector<item*>library;
 // read from books.txt
   ifstream infile;
@@ -34,26 +37,29 @@ int main() {
   }
   infile.close();
 
+
   char bor;
   int index;
   int bocode;
+
+
+// *************************************************************
+
 
   while(bor !='n'){
     printff(library);
     cout<<"to borrow an item please enter its index followed by the borrower's code"<<endl;
     cin>>index>>bocode;
-    library[index]->bocode=bocode;
 
-
-    try {
-      library.at(index)->borrow();
-      cout<<index<<" "<<library.at(index)->bocode<<endl;
+    try{
+      library.at(index)->borrow(bocode);
+      cout<<index<<" "<<bocode<<endl;
     }
-    catch(const out_of_range& a){
-      cout << "invalid index" << endl;
+    catch(const out_of_range& a) {
+      cout << "invailid index" << endl ;
     }
     catch (const string & msg){
-      cout << msg << endl;
+      cout<<msg<< endl;
     }
 
     cout<<"would you like to borrow another item? (y/n)"<<endl;

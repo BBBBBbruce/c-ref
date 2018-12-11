@@ -14,12 +14,12 @@ protected:
   std::string name;
   int status=1;
   int day=3;
-public:
   int bocode=0;
+public:
   item(std::string name_);
   bool check_status();
   virtual int change_date()=0;
-  virtual void borrow()=0;
+  virtual void borrow(int bor)=0;
   virtual std::ostream& print(std::ostream& os);
   friend std::ostream& operator<<(std::ostream& os , item& item);
 };
@@ -27,7 +27,7 @@ public:
 class books : public item{
   public:
     books(std::string name_);
-    void borrow();
+    void borrow(int bor);
     std :: ostream & print ( std :: ostream & os ) ;
     int change_date();
 };
@@ -36,7 +36,7 @@ class books : public item{
 class dvds : public item{
 public:
   dvds(std::string name_);
-  void borrow();
+  void borrow(int bor);
   std :: ostream & print ( std :: ostream & os ) ;
   int change_date();
 };

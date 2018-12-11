@@ -47,21 +47,22 @@ books::books(std::string name_):item(name_){};
 dvds::dvds(std::string name_) : item(name_){};
 
 
-void books::borrow(){
+void books::borrow(int bor){
   if(!check_status()){
     throw string("not available at the moment");
   }
   status=0;
   change_date();
-
+  bocode=bor;
 }
 
-void dvds::borrow(){
+void dvds::borrow(int bor){
   if(!check_status()){
     throw string("not available at the moment");
   }
   status=0;
   change_date();
+  bocode=bor;
 
 }
 
